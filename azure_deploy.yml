@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ReportingService
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: ReportingService
+          image: pdecontainerregistry.azurecr.io/ReportingService:Latest
+          ports:
+            - containerPort: 9005
+
+ kind: Service 
+ apiVersion: v1 
+ metadata: 
+   name: ReportingService
+ spec: 
+   selector: 
+     app: web 
+   ports: 
+   - protocol: TCP 
+     port: 9005
+     targetPort: 9005
+   type: LoadBalancer
