@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ReportingService
+  name: userdatareporting
   labels:
     app: web
 spec:
@@ -16,15 +16,15 @@ spec:
         app: web
     spec:
       containers:
-        - name: ReportingService
-          image: pdecontainerregistry.azurecr.io/ReportingService:Latest
+        - name: reportingservice
+          image: pdecontainerregistry.azurecr.io/reportingservice:_version_
           ports:
             - containerPort: 9005
-
+---
  kind: Service 
  apiVersion: v1 
  metadata: 
-   name: ReportingService
+   name: reportingservice-svc
  spec: 
    selector: 
      app: web 
